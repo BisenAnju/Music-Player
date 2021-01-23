@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
-
+import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +32,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const styles = {
+  heading1: {
+    color:"white",
+    fontSize:"20px",
+    fontWeight:"bold",
+    marginLeft:"10px"
+  },
+  heading2: {
+    color:"white",
+    fontSize:"15px",
+    marginLeft:"10px"
+  },
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -47,15 +61,38 @@ class App extends React.Component {
     };
   }
 
+
+  nextButtonFun=()=>{
+if(this.state.play1){
+  console.log("1st")
+this.setState({play2:true,play1:false,play3:false,play4:false})
+}
+else if(this.state.play2){
+  console.log("2nd")
+
+  this.setState({play3:true,play2:false,play1:false,play4:false})
+}
+else if (this.state.play3){
+  console.log("3rd")
+
+  this.setState({play4:true,play3:false,play1:false,play2:false})
+}
+else if(this.state.play4){
+  console.log("4th")
+
+  this.setState({play1:true,play4:false,play2:false,play3:false})
+}
+  }
+
   render() {
     const classes = useStyles;
 
     return (
-    <div >
-    <GridList >
+    <div style={{width:"100%"}}>
+    <GridList style={{width:"100%"}}>
 
       <GridListTile key="Subheader" cols={2}
-       style={{ height: 'auto',backgroundColor:"red",display:"flex",justifyContent:"center" }}>
+       style={{ height: 'auto',backgroundColor:"#cc1717",display:"flex",justifyContent:"center" }}>
         <ListSubheader style={{color:"white",fontWeight:"bold"}}>Music List</ListSubheader>
       </GridListTile>
 
@@ -142,8 +179,14 @@ class App extends React.Component {
     </GridList>
 
        {this.state.play1 ?
-       <div style={{backgroundColor:"#f1f3f4",position:"absolute", bottom :0,display:"flex",alignItems:"center",width:"100%"}}>
-       <div style={{ width:"90%"}}>
+       <div style={{height:"10%",backgroundColor:"#f1f3f4",position:"absolute", bottom :0,display:"flex",alignItems:"center",width:"100%"}}>
+
+<div style={{display:"flex",flexDirection:"column",justifyContent:"center", width:"45%",height:"100%",backgroundColor:"#cc1717"}}>
+      <div style={styles.heading1}>Jingle Bell </div>
+      <div style={styles.heading2}> Yo Yo Honey Singh</div>
+     </div>
+
+       <div style={{ width:"45%"}}>
        <ReactAudioPlayer
        style={{width:"90%"}}
        src="1.mp3"
@@ -152,12 +195,15 @@ class App extends React.Component {
        onPause= {(e) => this.setState({pause1:true})}
      />
      </div>
-     <div>
+     <div style={{width:"10%"}}>
      <Button
-        variant="contained"
-        color="primary"
+        style={{backgroundColor:"#cc1717",color:"white",width:"90%"}}
         className={classes.button}
-        endIcon={<SkipNextIcon/>}
+        endIcon={<SkipNextIcon style={{color:"white"}}/>}
+        onClick={(e) => {
+          e.preventDefault();
+          this.nextButtonFun()
+        }}
       >
         Next
       </Button>
@@ -167,8 +213,14 @@ class App extends React.Component {
 
 
 {this.state.play2 ?
-       <div style={{backgroundColor:"#f1f3f4",position:"absolute", bottom :0,display:"flex",alignItems:"center",width:"100%"}}>
-       <div style={{ width:"90%"}}>
+       <div style={{height:"10%",backgroundColor:"#f1f3f4",position:"absolute", bottom :0,display:"flex",alignItems:"center",width:"100%"}}>
+      
+      <div style={{display:"flex",flexDirection:"column",justifyContent:"center", width:"45%",height:"100%",backgroundColor:"#cc1717"}}>
+      <div style={styles.heading1}>Toh Aagaye Hum </div>
+      <div style={styles.heading2}>Jubin Nautiyal</div>
+     </div>
+
+       <div style={{ width:"45%"}}>
        <ReactAudioPlayer
        style={{width:"90%"}}
        src="2.mp3"
@@ -177,12 +229,15 @@ class App extends React.Component {
        onPause= {(e) => this.setState({pause2:true})}
      />
      </div>
-     <div>
+     <div style={{width:"10%"}}>
      <Button
-        variant="contained"
-        color="primary"
-        className={classes.button}
-        endIcon={<SkipNextIcon/>}
+       style={{backgroundColor:"#cc1717",color:"white",width:"90%"}}
+       className={classes.button}
+       endIcon={<SkipNextIcon style={{color:"white"}}/>}
+       onClick={(e) => {
+        e.preventDefault();
+        this.nextButtonFun()
+      }}
       >
         Next
       </Button>
@@ -191,8 +246,14 @@ class App extends React.Component {
     :null}
 
 {this.state.play3 ?
-       <div style={{backgroundColor:"#f1f3f4",position:"absolute", bottom :0,display:"flex",alignItems:"center",width:"100%"}}>
-       <div style={{ width:"90%"}}>
+     <div style={{height:"10%",backgroundColor:"#f1f3f4",position:"absolute", bottom :0,display:"flex",alignItems:"center",width:"100%"}}>
+      
+      <div style={{display:"flex",flexDirection:"column",justifyContent:"center", width:"45%",height:"100%",backgroundColor:"#cc1717"}}>
+      <div style={styles.heading1}>Oh Saaiyaan </div>
+      <div style={styles.heading2}> Arijit Singh</div>
+     </div>
+
+       <div style={{ width:"45%"}}>
        <ReactAudioPlayer
        style={{width:"90%"}}
        src="3.mp3"
@@ -201,12 +262,15 @@ class App extends React.Component {
        onPause= {(e) => this.setState({pause3:true})}
      />
      </div>
-     <div>
+     <div style={{width:"10%"}}>
      <Button
-        variant="contained"
-        color="primary"
+        style={{backgroundColor:"#cc1717",color:"white",width:"90%"}}
         className={classes.button}
-        endIcon={<SkipNextIcon/>}
+        endIcon={<SkipNextIcon style={{color:"white"}}/>}
+        onClick={(e) => {
+          e.preventDefault();
+          this.nextButtonFun()
+        }}
       >
         Next
       </Button>
@@ -215,8 +279,14 @@ class App extends React.Component {
     :null}
  
  {this.state.play4 ?
-       <div style={{backgroundColor:"#f1f3f4",position:"absolute", bottom :0,display:"flex",alignItems:"center",width:"100%"}}>
-       <div style={{ width:"90%"}}>
+       <div style={{height:"10%",backgroundColor:"#f1f3f4",position:"absolute", bottom :0,display:"flex",alignItems:"center",width:"100%"}}>
+      
+      <div style={{display:"flex",flexDirection:"column",justifyContent:"center", width:"45%",height:"100%",backgroundColor:"#cc1717"}}>
+      <div style={styles.heading1}>Mehendi Wale Haath</div>
+      <div style={styles.heading2}> Guru Randhawa</div>
+     </div>
+
+       <div style={{ width:"45%"}}>
        <ReactAudioPlayer
        style={{width:"90%"}}
        src="4.mp3"
@@ -225,12 +295,15 @@ class App extends React.Component {
        onPause= {(e) => this.setState({pause4:true})}
      />
      </div>
-     <div>
+     <div style={{width:"10%"}}>
      <Button
-        variant="contained"
-        color="primary"
-        className={classes.button}
-        endIcon={<SkipNextIcon/>}
+         style={{backgroundColor:"#cc1717",color:"white",width:"90%"}}
+         className={classes.button}
+         endIcon={<SkipNextIcon style={{color:"white"}}/>}
+         onClick={(e) => {
+          e.preventDefault();
+          this.nextButtonFun()
+        }}
       >
         Next
       </Button>
