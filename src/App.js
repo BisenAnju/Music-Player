@@ -37,12 +37,12 @@ const styles = {
     color:"white",
     fontSize:"20px",
     fontWeight:"bold",
-    marginLeft:"10px"
+    marginLeft:"15px"
   },
   heading2: {
     color:"white",
     fontSize:"15px",
-    marginLeft:"10px"
+    marginLeft:"15px"
   },
 }
 
